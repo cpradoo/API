@@ -1,0 +1,30 @@
+CREATE DATABASE if NOT EXISTS evaluacion_3;
+USE evaluacion_3;
+
+CREATE TABLE IF NOT EXISTS posts(
+    id INT NOT NULL AUTO_INCREMENT,
+    userId INTEGER NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    body TEXT NOT NULL,
+
+    CONSTRAINT pk_posts PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS comments(
+    id INT NOT NULL AUTO_INCREMENT,
+    postId INTEGER NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    body TEXT NOT NULL,
+
+    CONSTRAINT pk_comments PRIMARY KEY (id),
+    CONSTRAINT fk_comments_posts FOREIGN KEY (postId) REFERENCES posts(id)
+);
+
+CREATE TABLE IF NOT EXISTS usuarios(
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+
+    CONSTRAINT pk_usuarios PRIMARY KEY (id)
+);
